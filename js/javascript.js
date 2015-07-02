@@ -178,7 +178,7 @@ $.fn.ready(function(){
       });
     })
   .on("click", "#aReset", function(){
-    app.fn.reset();
+    app.fn.reset(day);
     return false;
   })
   .on("click", "#aExport", function(){
