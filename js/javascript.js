@@ -1,7 +1,7 @@
 // remove the static text for search engines
 document.getElementById("static").style.display = "none";
 
-var app;		// kept outside for console inspection
+var app;
 
 $.fn.ready(function(){
 
@@ -157,12 +157,12 @@ $.fn.ready(function(){
   app.editors.structure.getSession().on('change', function() {
     app.fn.setStructure(app.editors.structure.getSession().getValue());
     app.fn.renderOutput("html");
-    app.fn.saveToLocal();
+    app.fn.saveToLocal(day);
   });
   app.editors.style.getSession().on('change', function() {
     app.fn.setStyle(app.editors.style.getSession().getValue());
     app.fn.renderOutput("style");
-    app.fn.saveToLocal();
+    app.fn.saveToLocal(day);
   });
 
   app.$.nav = $("#nav");
