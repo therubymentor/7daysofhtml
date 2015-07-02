@@ -7,42 +7,41 @@ $.fn.ready(function(){
 
   var $body = $("body");
 
-  // browser fail
+  // epic browser fail
   if ((Modernizr.generatedcontent === false) || (Modernizr.localstorage === false)) {
     $("body").addClass("error").removeClass("loading").css({ width: "700px", margin: "20px auto" }).html("<h1>Dang.</h1><p>Looks like your browser didn't pass whatever random tests I decided were arbitrarily important:</p><pre>Modernizr: " + JSON.stringify(Modernizr).replace(/,/gi, ",\n    ").replace(/{/gi, "{\n    ").replace(/}/gi, "\n}") + "</pre><p>If you think this is in error or that I'm a dummy, contact me <a href=\"http://mynameistommy.com/\">here</a>. Otherwise, if you'd like to use this app, <a href='http://browsehappy.com/'>upgrade your browser</a>.</p>");
     return false;
   }
 
   app = {
-    appname: "Seven Day HTML/CSS Bootcamp",
-    structure: "",
-    style: "",
+    appname: "7 Day HTML Bootcamp from RubyMentor",
+    html: "",
+    css: "",
     editors: {},
     throttle: {
-      // in case I add other throttlers later...
       render: undefined
     },
-      $: {
-        output: {
-          body: $("#ifrOutput").contents().find("body"),
-          head: $("#ifrOutput").contents().find("head")
-        }
-      },
+    $: {
+      output: {
+        body: $("#ifrOutput").contents().find("body"),
+        head: $("#ifrOutput").contents().find("head")
+      }
+    },
     fn: {
-     setStructure: function(_structure) {
-        app.structure = _structure || app.structure;
+     setHtml: function(val) {
+        app.html = val || app.html;
       },
-      setStyle: function(_style) {
-        app.style = _style || app.style;
+      setCss: function(val) {
+        app.css = val || app.css;
       },
-        // sets app props, fills editors, renders output
-      useStructureStyle: function(settings) {
+      // sets app props, fills editors, renders output
+      renderIt: function(settings) {
         if (typeof settings !== "object") { return false; }
-        if (!settings.structure || !settings.style) { return false; }
-        app.fn.setStructure(settings.structure);
-        app.fn.setStyle(settings.style);
-        app.editors.structure.getSession().setValue(settings.structure);
-        app.editors.style.getSession().setValue(settings.style);
+        if (!settings.html || !settings.css) { return false; }
+        app.fn.setHtml(settings.html);
+        app.fn.setCss(settings.css);
+        app.editors.html.getSession().setValue(settings.html);
+        app.editors.css.getSession().setValue(settings.css);
         return true;
       },
       renderOutput: function(sWhat){
@@ -50,24 +49,22 @@ $.fn.ready(function(){
           sWhat = sWhat || "all";
           if ((sWhat === "html") || (sWhat === "all")) {
             app.$.output.body.html(
-                app.structure
+                app.html
                 );
             var sTitle = app.$.output.body.find("h1:first").text().trim();
             document.title = app.appname;
             if (sTitle && sTitle !== app.appname) { document.title +=  " - " + sTitle; }
           }
-          if ((sWhat === "style") || (sWhat === "all")) {
-            app.$.output.head.html(
-                $("<style />").html(app.style)
-                );
+          if ((sWhat === "css") || (sWhat === "all")) {
+            app.$.output.head.html($("<style />").html(app.css));
           }
           app.throttle.render = undefined;
         }, 500);
       },
       saveToLocal: function(day){
         var obj = {
-          structure: app.editors.structure.getSession().getValue(),
-          style: app.editors.style.getSession().getValue()
+          html: app.editors.html.getSession().getValue(),
+          css: app.editors.css.getSession().getValue()
         };
         localStorage.setItem(day, JSON.stringify(obj));
         return localStorage.getItem(day);
@@ -75,7 +72,7 @@ $.fn.ready(function(){
       getLocal: function(day) {
         data = localStorage.getItem(day);
         if (data) {
-          app.fn.useStructureStyle($.parseJSON(data));
+          app.fn.renderIt($.parseJSON(data));
           return true;
         }
         return false;
@@ -83,47 +80,31 @@ $.fn.ready(function(){
       getData: function(day){
         var iMilli = +new Date(), def = {};
         function load() {
-          if (def.structure && def.style) {
-            app.fn.useStructureStyle(def);
+          if (def.html && def.css) {
+            app.fn.renderIt(def);
           }
         }
         $.get("/data/"+day+".html?" + iMilli, function(resp) {
-          def.structure = resp;
+          def.html = resp;
           load();
         }, "text");
         $.get("/data/"+day+".css?" + iMilli, function(resp) {
-          def.style = resp;
+          def.css = resp;
           load();
         }, "text");
         return true;
       },
       reset: function(day){
-        delete localStorage.getItem(day);
+        localStorage.removeItem(day);
         app.fn.getData(day);
-      },
-      exportUri: function(){
-        // will open a data URI in a new window, some browsers may cut it off...
-        var sTitle = app.$.output.body.find("h1:first").text().trim();
-        var sUrl = "data:text/html," +
-          encodeURIComponent(
-              (sTitle ? "<title>" + sTitle + "</title> " : "") +
-              "<body>" + app.structure + "</body> " +
-              "<style>" + app.style + "</style> " +
-              "<form action='" + document.location.protocol + "//" + document.location.host + document.location.pathname + "' method='get' style='display:none'>" + 
-              "<textarea name='structure'>" + app.editors.structure.getSession().getValue() + "</textarea> " +
-              "<textarea name='style'>" + app.editors.style.getSession().getValue() + "</textarea> " +
-              "</form> " +
-              "<script src='" + document.location.protocol + "//" + document.location.host + document.location.pathname + "js/external.js'></script>"
-              );
-        window.open(sUrl);
       }
     } // fn
   };
 
   // instantiate ace editors
   var editors = [
-  { name: "structure", id: "preStructure", mode: require("ace/mode/html").Mode },
-  { name: "style", id: "preStyle", mode: require("ace/mode/css").Mode }
+  { name: "html", id: "preHtml", mode: require("ace/mode/html").Mode },
+  { name: "css", id: "preCss", mode: require("ace/mode/css").Mode }
   ];
   var day = function() {
     var d;
@@ -146,7 +127,6 @@ $.fn.ready(function(){
     oEditor.on("blur", function(){ $editor.removeClass("focus"); });
   });
 
-  // attempt: fill from localStorage, or load data; then render
   if (!app.fn.getLocal(day)) {
     app.fn.getData(day);
   }
@@ -154,40 +134,24 @@ $.fn.ready(function(){
 
   // bind change events (not perfect: doesn't know paste, deleting)
   // could be abstracted more
-  app.editors.structure.getSession().on('change', function() {
-    app.fn.setStructure(app.editors.structure.getSession().getValue());
+  app.editors.html.getSession().on('change', function() {
+    app.fn.setHtml(app.editors.html.getSession().getValue());
     app.fn.renderOutput("html");
     app.fn.saveToLocal(day);
   });
-  app.editors.style.getSession().on('change', function() {
-    app.fn.setStyle(app.editors.style.getSession().getValue());
-    app.fn.renderOutput("style");
+  app.editors.css.getSession().on('change', function() {
+    app.fn.setCss(app.editors.css.getSession().getValue());
+    app.fn.renderOutput("css");
     app.fn.saveToLocal(day);
   });
 
   app.$.nav = $("#nav");
 
-  // view switcher and nav links
   app.$.nav
-    .on("click", ".inpView", function(){
-      var $checked = app.$.nav.find("input:checked"), sVal = $checked.val();
-      $body.attr("role", sVal);
-      localStorage.view = sVal;
-      $.each(app.editors, function(i, editor) {
-        editor.resize();
-      });
-    })
   .on("click", "#aReset", function(){
     app.fn.reset(day);
     return false;
-  })
-  .on("click", "#aExport", function(){
-    app.fn.exportUri();
-    return false;
   });
-
-  // view in localStorage?
-  if (localStorage.view) { $(".inpView[value='" + localStorage.view + "']").click(); }
 
   // force links in output out of iframe
   app.$.output.body.on("click", "a", function() {
@@ -198,5 +162,4 @@ $.fn.ready(function(){
   });
 
   $body.removeClass("loading");
-
 });
