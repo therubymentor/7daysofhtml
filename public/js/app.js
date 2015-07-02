@@ -109,7 +109,28 @@ $.fn.ready(function(){
   var day = function() {
     var d;
     if(location.href.split("?").length>1) {
-      d = location.href.split("?")[1].split("=")[1];
+      code = location.href.split("?")[1].split("=")[1];
+      console.debug(code);
+      switch(code) {
+        case "kickass":
+          d = 2
+          break;
+        case "killinit":
+          d = 3
+          break;
+        case "yourmom":
+          d = 4
+          break;
+        case "didntraiseadummy":
+          d = 5
+          break;
+        case "SHARK!":
+          d = 6
+          break;
+        case "mariosaves":
+          d = 7
+          break;
+      }
     }
     return d || 1
   }()
