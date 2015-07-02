@@ -4,8 +4,6 @@ require 'rack'
 require 'rack/router'
 require 'erb'
 
-require_relative 'static_html_router'
-
 dev_boot = -> {
   puts "booting in development mode"
   require 'byebug'
@@ -19,11 +17,20 @@ prod_boot = -> {
 
 ENV["RACK_ENV"] == "development" ? dev_boot.() : prod_boot.()
 
-html_files  = Dir["public/*.html"].map{ |p| File.basename(p) }
-other_files = ["/favicon.ico", "/images", "/js", "/css", "/defaults"]
+$stdout.sync = true
 
 use Rack::Static,
-  :urls => html_files + other_files,
+  :urls => ["/css", "/js", "/images", "/data"],
   :root => "public"
 
-run StaticHtmlRouter.new
+run lambda { |env|
+  [
+    200,
+    {
+      'Content-Type'  => 'text/html',
+      'Cache-Control' => 'public, max-age=86400'
+    },
+    File.open('public/index.html', File::RDONLY)
+  ]
+}
+
