@@ -82,11 +82,11 @@ $.fn.ready(function(){
             app.fn.renderIt(def);
           }
         }
-        $.get("/data/"+day+".html?" + iMilli, function(resp) {
+        $.get("data/"+day+".html?" + iMilli, function(resp) {
           def.html = resp;
           load();
         }, "text");
-        $.get("/data/"+day+".css?" + iMilli, function(resp) {
+        $.get("data/"+day+".css?" + iMilli, function(resp) {
           def.css = resp;
           load();
         }, "text");
