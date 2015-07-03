@@ -1,6 +1,4 @@
 // remove the static text for search engines
-document.getElementById("static").style.display = "none";
-
 var app;
 
 $.fn.ready(function(){
@@ -118,10 +116,10 @@ $.fn.ready(function(){
         case "killinit":
           d = 3
           break;
-        case "yourmom":
+        case "getpaid":
           d = 4
           break;
-        case "didntraiseadummy":
+        case "mascafeporfavor":
           d = 5
           break;
         case "SHARK!":
