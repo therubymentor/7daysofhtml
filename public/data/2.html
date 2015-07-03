@@ -1,1 +1,144 @@
-<h1>Day 2!</h2>
+<h1>Welcome back!</h1>
+<h2>Today, we get an intro to CSS!</h2>
+
+<p>See the window pane to the left and on the bottom
+half? That represents a <em>CSS file</em> and in this
+case, the one that directly effects the HTML to the 
+left and above. The <strong>body</strong> section of
+the CSS will effect everything in the HTML section.
+</p>
+
+<p>To see how this works, change the text in the CSS 
+window by adding the following text to the:
+<strong>body</strong> section.</p>
+
+<pre>  padding: 16px;</pre>
+
+<p>See how the text moved inward from the
+<em>container</em>? (The container being everything in
+the body!) You just <em>styled</em> the <em>HTML</em>
+using <strong>CSS</strong>. Now let's make those
+headings a bit nicer.</p>
+
+<p>Create a new "CSS block" under the body block in the
+CSS window. It should look like this:</p>
+
+<pre>h1 {
+
+}</pre>
+
+<p>Then we will change the alignment by changing
+<strong>text-align</strong> to center like so:</p>
+
+<pre>h1 {
+  text-align: center;
+}</pre>
+
+<hr>
+
+<p>We can also make things align to the right side of
+the container. Let's make the h2 tag hang out on the
+right side of things with the following CSS:</p>
+
+<pre>h2 {
+  text-align: right;
+}</pre>
+
+<p>So far we have been styling HTML <strong>elements</strong>
+or <em>tags</em>. We can also style those same elements
+not by their element name, but by an ID or a CLASS.
+Allow me to demonstrate with the following HTML:</p>
+
+<pre>
+&lt;div id="person"&gt;
+  &lt;div class="info name"&gt;Jim OKelly&lt;/div&gt;
+  &lt;div class="info email"&gt;heyasshole@rubymentor.io&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<p>That was me displaying the code on the page here for
+you to see. Now comes the real thing that we will 
+style:</p>
+
+<div id="person">
+    <div class="info name">Jim OKelly</div>
+      <div class="info email">heyasshole@rubymentor.io</div>
+</div>
+
+<p>To change those divs, let's start with the outside
+container that has an ID. The first thing you should
+know about IDs is that they are unique. If you put
+two elements on the same page and give them the same
+ID, don't expect shit to work.</p>
+
+<p>Add this to your CSS window:</p>
+
+<pre>
+div#person {
+  margin-left: 1em;
+  padding-left: 1em;
+  border-left: 1px solid #333;
+}
+</pre>
+
+<p>You should now see the whole block of text move
+to the right, get a vertical line, a bit more padding
+and then the text. We added both a margin and some
+padding, and a left border.
+</p>
+
+<hr>
+
+<p>You can use <strong>margin</strong> or 
+<strong>margin-left/top/right/bottom</strong>
+to add space <em>outside</em> the container,
+and <strong>padding</strong> or 
+<strong>padding-left/top/right/bottom</strong>
+to add space <em>inside</em> the container.</p>
+
+<p>You can also use <strong>border</strong> or 
+<strong>border-left/top/right/bottom</strong>
+to add, yep... a border. Notice the arguments
+to the style, we need a width, a type of line
+(it could be dotted for instance) and a color.</p>
+
+<p>A color like <strong>#333</strong> is what is known
+as a <em>HEX</em> number color. You can also use
+colors like <em>red</em> or <em>blue</em>. This
+applies to all colors in CSS.</p>
+
+<p>Now let's finish up with some changes to a
+<strong>class</strong> or two. Add the following
+CSS:</p>
+
+<pre>
+.info {
+  padding: 0.5em;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.email {
+  text-style: italic;
+}
+</pre>
+
+<p>As you can see, we can effect different elements
+by adding CSS rules to class names and then applying
+that class to the element. Classes are not unique
+and can be added on many different HTML elements.</p>
+
+<hr>
+
+<h3>HOMEWORK</h3>
+
+Didn't your Mother tell you not to play with yourself?
+Well, I say bullshit. Play with it. Make changes. See
+what happens. Play 2 year old scientist here with
+IDs and CLASSES. Sprinkle them in the text in this
+lesson and see what happens.</p>
+
+<p>Remember, you can always click the RESET link at
+the bottom and start over! See you next week.</p>
