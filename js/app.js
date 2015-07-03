@@ -125,7 +125,7 @@ $.fn.ready(function(){
         case "SHARK!":
           d = 6
           break;
-        case "mariosaves":
+        case "momoney":
           d = 7
           break;
       }
