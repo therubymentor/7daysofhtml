@@ -180,6 +180,3 @@ body[role="edit"] div[role="output"] { display: none; }
 body[role="result"] div[role="input"] { display: none; }
 body[role="result"] div[role="output"] { left: 20px; }
 
-
-#lesson { display: none; }
-
