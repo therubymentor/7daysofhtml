@@ -1,6 +1,18 @@
 // remove the static text for search engines
 var app;
 
+function getParameter(theParameter) { 
+  var params = window.location.search.substr(1).split('&');
+
+  for (var i = 0; i < params.length; i++) {
+    var p=params[i].split('=');
+    if (p[0] == theParameter) {
+      return decodeURIComponent(p[1]);
+    }
+  }
+  return false;
+}
+
 $.fn.ready(function(){
 
   var $body = $("body");
@@ -107,7 +119,7 @@ $.fn.ready(function(){
   var day = function() {
     var d;
     if(location.href.split("?").length>1) {
-      code = location.href.split("?")[1].split("=")[1];
+      code = getParameter("day");
       console.debug(code);
       switch(code) {
         case "kickass":

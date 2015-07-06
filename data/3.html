@@ -1,1 +1,199 @@
-<h1>Day 3</h1>
+<h1>Day 3! Totally Tablular Dood =D</h1>
+
+<p>Calendars, spreadsheets, and even Jeopordy boards are
+all represented as <em>Tabular Data</em>. But enough
+yap yap</p>
+
+<table>
+  <tr>
+    <th>mon</th>
+    <th>tue</th>
+    <th>wed</th>
+    <th>thu</th>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td>21</td>
+    <td>22</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <td>27</td>
+    <td>28</td>
+    <td>29</td>
+    <td>30</td>
+  </tr>
+</table>
+
+<p>You can check out the code that made that in 
+the HTML editor to the left and top. You know the 
+drill by now.</p>
+
+Now you fill in the missing <em>headings</em>
+and row <em>data</em>. <strong>th</strong> indeed 
+stands for <strong>table heading</strong> and 
+<strong>td</strong> is <strong>table data</strong>
+can you guess what <strong>tr</strong> means?
+
+<p>Did you fill out the missing data so all the days 
+are represented? Next we will add some <em>STYLE</em>
+to that shiznit!</p>
+
+<p>Locate the CSS section to the left and bottom. In
+there, add an element definition like so:</p>
+
+<pre>
+table {
+
+}
+</pre>
+
+<p>But we don't really want to style the <em>table</em>
+we want to style the TH and TDs:</p>
+
+<pre>
+table th {
+  text-transform: uppercase;
+  font-family: helvetica, sans-serif;
+  border-bottom: 1px solid #333;
+}
+
+table td {
+  font-family: courier, serif;
+  letter-spacing: 1px;
+}
+</pre>
+
+<p>Type (if you copy/paste you are 
+<strong>CHEATING</strong> yourself, not me. I'm good.
+Do whatcha wanna dooo.</p>
+
+
+<table>
+  <tr>
+    <th>mon</th>
+    <th>tue</th>
+    <th>wed</th>
+    <th>thu</th>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td>21</td>
+    <td>22</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <td>27</td>
+    <td>28</td>
+    <td>29</td>
+    <td>30</td>
+  </tr>
+</table>
+
+<p>Ok, I lied, we need to style the <strong>table</strong>
+too. See that space in our TH line?</p>
+<p>Kick rocks stoopid space!</p>
+
+<pre>
+table {
+  border-spacing: 0px;
+}
+</pre>
+
+<p>What you just did was <em>override</em> the defaults
+se by the <em>browser</em>. At some point you will come
+across the concept in CSS of a <em>reset</em> file.</p>
+
+<p>That is just a file that 'flattens' all the browsers
+into a single set of settings instead a large set of
+disperate values. Yeah, they leave it to us supermen
+(and supergals) to fix these sorts of things.</p>
+
+But now that <strong>table</strong> is all <em>jammed</em>
+up against the paragraphs on this page. Let's fix that:</p>
+
+<pre>
+table {
+  border-spacing: 0px;
+  margin: 2em;
+}
+</pre>
+
+<p>Just for 'shits and giggles' as my ol' man used to say,
+let's make this text bareable again. Typography is very
+important!</p>
+
+<pre>
+p {
+  font: 1.2em helvetica, serif;
+  line-height: 1.6;
+}
+</pre>
+
+<p>OMG I CAN READ!!!!!</p>
+
+<p>What else can you do with a table and CSS? How about
+coloring?</p>
+
+<table>
+  <tr>
+    <th>mon</th>
+    <th>tue</th>
+    <th>wed</th>
+    <th>thu</th>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td>21</td>
+    <td>22</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <td>27</td>
+    <td>28</td>
+    <td>29</td>
+    <td>30</td>
+  </tr>
+</table>
+
+<pre>
+table th {
+  background-color: #F58C8C;
+  text-transform: uppercase;
+  font-family: helvetica, sans-serif;
+  border-bottom: 1px solid #333;
+  margin: 1em;
+}
+</pre>
+
+<p>What about some padding?</p>
+
+<pre>
+table th {
+  padding: 1em;
+  background-color: #F58C8C;
+  text-transform: uppercase;
+  font-family: helvetica, sans-serif;
+  border-bottom: 1px solid #333;
+  margin: 1em;
+}
+
+table td {
+  padding: 2em;
+  font-family: courier, serif;
+  letter-spacing: 1px;
+  margin: 1em;
+}
+</pre>
+
+<p>Hell yeah! Now that is better. And it's a good thing
+because today's lesson is officially over! But don't
+despair! I got some Ruby extra credit for ya if that
+kind of thing makes you tingle somewhere.</p>
+
+<p>No.. like in your heart! Dirty minds... all of ya!</p>
+
+<p>Give this a try: <a href="https://guides.rubymentor.io/build-a-deck-of-cards-using-irb.html">
+Building a Deck of Playing Cards in Ruby</a>!</p>
+</p>
+
