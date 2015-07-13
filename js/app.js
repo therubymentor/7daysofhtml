@@ -1,12 +1,12 @@
 // remove the static text for search engines
 var app;
 
-function getParameter(theParameter) { 
+function getParameter(param) { 
   var params = window.location.search.substr(1).split('&');
 
   for (var i = 0; i < params.length; i++) {
     var p=params[i].split('=');
-    if (p[0] == theParameter) {
+    if (p[0] == param) {
       return decodeURIComponent(p[1]);
     }
   }
@@ -16,12 +16,6 @@ function getParameter(theParameter) {
 $.fn.ready(function(){
 
   var $body = $("body");
-
-  // epic browser fail
-  if ((Modernizr.generatedcontent === false) || (Modernizr.localstorage === false)) {
-    $("body").addClass("error").removeClass("loading").css({ width: "700px", margin: "20px auto" }).html("<h1>Dang.</h1><p>Looks like your browser didn't pass whatever random tests I decided were arbitrarily important:</p><pre>Modernizr: " + JSON.stringify(Modernizr).replace(/,/gi, ",\n    ").replace(/{/gi, "{\n    ").replace(/}/gi, "\n}") + "</pre><p>If you think this is in error or that I'm a dummy, contact me <a href=\"http://mynameistommy.com/\">here</a>. Otherwise, if you'd like to use this app, <a href='http://browsehappy.com/'>upgrade your browser</a>.</p>");
-    return false;
-  }
 
   app = {
     appname: "7 Day HTML Bootcamp from RubyMentor",
@@ -191,6 +185,4 @@ $.fn.ready(function(){
       document.location = $a.attr("href");
     }
   });
-
-  $body.removeClass("loading");
 });
