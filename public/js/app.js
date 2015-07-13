@@ -123,27 +123,27 @@ $.fn.ready(function(){
       console.debug(code);
       switch(code) {
         case "kickass":
-          d = 2
+          d = 2;
           break;
         case "killinit":
-          d = 3
+          d = 3;
           break;
         case "getpaid":
-          d = 4
+          d = 4;
           break;
         case "mascafeporfavor":
-          d = 5
+          d = 5;
           break;
         case "SHARK!":
-          d = 6
+          d = 6;
           break;
         case "momoney":
-          d = 7
+          d = 7;
           break;
       }
     }
-    return d || 1
-  }()
+    return d || 1;
+  }();
 
   $.each(editors, function (iEditor, editor) {
     var $editor = app.$[editor.name] = $("#" + editor.id);

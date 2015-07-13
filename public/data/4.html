@@ -1,1 +1,118 @@
-<h1>Day 4</h1>
+<h1>Today we are going to learn about lists!</h1>
+<p>You have probably seen horizontal navigation lists
+around the interwebs and you didn't realize it was
+just a list with some style. Take the following
+horizontal list. Don't worry, I won't press charges.</p>
+
+<pre>
+&lt;ul class="horizontal-list"&gt;
+  &lt;li&gt;
+    &lt;a href="https://rubymentor.io"&gt;Home&lt;/a&gt; 
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="https://blog.rubymentor.io"&gt;Blog&lt;/a&gt; 
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="https://guides.rubymentor.io"&gt;Guides&lt;/a&gt; 
+  &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+<p>Here is the <em>same</em> list but actually displayed
+as HTML instead of having the HTML <em>rendered</em>. By
+the way, I put that in a &lt;pre&gt; tag to make it keep
+the spacing and formatting.</p>
+
+<ul class="horizontal-list">
+  <li>
+    <a href="https://rubymentor.io">Home</a>
+  </li>
+  <li>
+    <a href="https://blog.rubymentor.io">Blog</a>
+  </li>
+  <li>
+    <a href="https://guides.rubymentor.io">Guides</a>
+  </li>
+</ul>
+
+<p>Noticed how the <em>natural</em> display of a list
+is to do a veritcal, bullet point based ist. Now let's
+change it to be <em>inline</em> which is the first step
+to having a horizontal list. In the CSS pane to the left
+add an class:</p>
+
+<pre>
+.horizontal-list {
+  display: inline;
+  list-style: none;
+}
+</pre>
+
+<p>We still aren't flowing horizontally. And we still have
+bullets depending on the browser. The next step would be
+to scope this class to ul and li:</p>
+
+<pre>
+ul.horizontal-list li {
+  display: inline;
+  list-style: none;
+}
+</pre>
+
+<p>Wow, that is already looking better! But we need to add
+some padding between these elements now so they aren't
+jammed up into each other like cars on the LA freeways.
+</p>
+
+<p>We will now add one more designator to this list
+to put some distance between the li elements:</p>
+
+<pre>
+ul.horizontal-list li {
+  display: inline;
+  margin-right: 1em;
+}
+</pre>
+
+<ul class="horizontal-list">
+  <li>
+    <a href="https://rubymentor.io">Home</a>
+  </li>
+  <li>
+    <a href="https://blog.rubymentor.io">Blog</a>
+  </li>
+  <li>
+    <a href="https://guides.rubymentor.io">Guides</a>
+  </li>
+</ul>
+
+<p>Wow, that did something! What if you wanted to
+put <em>pipe</em> character seperators in between
+the list items?</p>
+
+<p>Well, that would require us to use some <em>
+pseudo elements</em>, namely the <strong>:after</strong>
+designator. So add the following CSS now:</p>
+
+<pre>
+ul.horizontal-list li:after {
+  content: " |";
+  margin-left: 1em;
+}
+</pre>
+
+<p>We are almost there! But we really didn't want to 
+have a pipe after the <em>last</em> li element. We
+can fix this with another pseudo designator, this time
+the <strong>last-child</strong> and another 
+<strong>after</strong> like so:</p>
+
+<pre>
+ul.horizontal-list li:last-child:after {
+  content: "";
+}
+</pre>
+
+<p>That's it for today!. Next time we will dig into the
+mysteries of images! See you then. Happy hacking and 
+keep on a codin'.</p>
