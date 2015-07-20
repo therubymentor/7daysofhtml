@@ -1,2 +1,62 @@
-<h1>Day 5</h1>
+<h1>
+  <img src="http://i.imgur.com/seMKO.jpg">
+    A picture is worth a thousand words
+</h1>
 
+<p>An image in HTML is represented by the &lt;img&gt;
+tag. That tag can be styled with CSS like anything else
+in HTML. Let's give it a width of 50% and float it to
+the left hand side..</p>
+
+<pre>
+h1 img {
+  width: 50%;
+  float: left;
+}
+</pre>
+
+<p>Now let's add some whitespace so the text isn't all
+up in the photo's koolaid. Add the followinf CSS to
+the h1 img styles:</p>
+
+<pre>
+margin-right: 1em;
+</pre>
+
+<h2>Did you know?</h2>
+
+<p>You can also have images as the background of a
+HTML element. So now in the HTML section create a
+div and give it the class of paralax:</p>
+
+<pre>
+&lt;div class="blurry"&gt;&lt;/div&gt;
+</pre>
+
+<div class="blurry"></div>
+
+<p>Notice it has no HTML content of it's own, now
+style it in the CSS pane by writing a block for the
+class blurry. Classes are denoted in CSS by a '.'
+character:</p>
+
+<pre>
+div.blurry {
+  background: url('https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg');
+  height: 400px;
+  width: 100%;
+  opacity: 0.8;
+}
+</pre>
+
+<p>Now we will add an image as an element inside that 
+div.</p>
+
+<pre>
+&lt;div class="blurry"&gt;
+&lt;img src="http://hd.wallpaperswide.com/thumbs/simple_blue_background-t2.jpg"&gt;
+&lt;/div&gt;
+</pre>
+
+<p>You can also add text to that div. Add "Pretty cool eh?"
+to the div and you are done for the day!</p>

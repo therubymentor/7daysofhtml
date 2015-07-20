@@ -6,7 +6,7 @@ function getParameter(param) {
 
   for (var i = 0; i < params.length; i++) {
     var p=params[i].split('=');
-    if (p[0] == param) {
+    if (p[0] === param) {
       return decodeURIComponent(p[1]);
     }
   }
